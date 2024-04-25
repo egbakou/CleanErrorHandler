@@ -10,14 +10,11 @@ namespace CleanErrorHandler.Controllers;
 public class ProductsController(ILogger<ProductsController> logger, IProductService productService)
     : ControllerBase
 {
-    private readonly ILogger<ProductsController> _logger = logger;
-    private readonly IProductService _productService = productService;
-
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult GetAll()
     {
-        var data = _productService.GetProducts();
+        var data = productService.GetProducts();
         return Ok(data);
     }
 
@@ -48,7 +45,7 @@ public class ProductsController(ILogger<ProductsController> logger, IProductServ
         // Customization in AddProblemDetails in Program.cs will not be applied here
         //return NotFound("Product id must be between 1 and 10");
         
-        var product = _productService.GetProductById(id);
+        var product = productService.GetProductById(id);
         if (product is null)
         {
             return NotFound();
