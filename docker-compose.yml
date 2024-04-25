@@ -1,0 +1,6 @@
+﻿services:
+  cleanerrorhandler:
+    image: cleanerrorhandler
+    build:
+      context: .
+      dockerfile: CleanErrorHandler/Dockerfile
