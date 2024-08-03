@@ -1,6 +1,7 @@
 using CleanErrorHandler.Exceptions;
 using CleanErrorHandler.Services;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using static CleanErrorHandler.Exceptions.Helpers;
@@ -19,6 +20,8 @@ builder.Services.AddProblemDetails( options =>
     };
 });
 builder.Services.AddControllers();
+// convert all endpoints into lowercase
+builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-8.0
